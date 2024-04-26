@@ -97,7 +97,6 @@ class MessageDetailScreen extends StatelessWidget {
                             physics: const NeverScrollableScrollPhysics(),
                             itemCount: controller.chatList[index].chatModel.length,
                             itemBuilder: (context,ind){
-                              print("kkkkk $k");
                               return Column(
                                 children: [
                                   controller.chatList[index].chatModel[ind].isSender == 0 ?

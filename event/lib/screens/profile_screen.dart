@@ -321,8 +321,6 @@ import 'package:event/screens/message/message_screen.dart';
 import 'package:event/utils/common_imports.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'demo/bubblescreen.dart';
-
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
@@ -793,12 +791,18 @@ class ProfileScreen extends StatelessWidget {
                               physics: const ScrollPhysics(),
                               itemCount: controller.PostsList.length,
                               itemBuilder: (context, index) {
-                                return Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15),
-                                      image: DecorationImage(
-                                          image: AssetImage(
-                                              controller.PostsList[index]))),
+                                return GestureDetector(
+                                  onTap: () {
+                                    Get.to(MyPhotoViewer(
+                                        url: controller.PostsList[index]));
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        image: DecorationImage(
+                                            image: AssetImage(
+                                                controller.PostsList[index]))),
+                                  ),
                                 );
                               },
                             ),
@@ -815,106 +819,106 @@ class ProfileScreen extends StatelessWidget {
   }
 
   buildLanguageDialog(BuildContext context, ProfileController controller) {
-    Get.dialog(
-      AlertDialog(
-        titlePadding: const EdgeInsets.only(top: 20),
-        title: Center(
-          child: Text("selectlaunguage".tr,style: TextStyle(
+    Get.dialog(AlertDialog(
+      titlePadding: const EdgeInsets.only(top: 20),
+      title: Center(
+        child: Text(
+          "selectlaunguage".tr,
+          style: TextStyle(
             fontSize: 20,
             color: Colors.blue, // Replace with your color
             fontFamily: 'YourFont', // Replace with your font family
             overflow: TextOverflow.ellipsis,
-          ),),
+          ),
         ),
-        contentPadding: EdgeInsets.zero,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(50),
-        ),
-        content: GetBuilder<ProfileController>(
-          init: ProfileController(),
-          id: "list",
-          builder: (controller) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  for(int i = 0 ; i<controller.languageList.length ; i++)
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      margin: const EdgeInsets.all(0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            controller.languageList[i].laung,
-                            style: const TextStyle(
-                              fontSize: 16, // Replace with your font size
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black, // Replace with your color
-                            ),
-                          ),
-                          SizedBox(
-                            height: 30,
-                            child: Checkbox(
-                              activeColor: Colors.blue,
-                              // Replace with your color
-                              value: controller.selectedIndex == i
-                                  ? true
-                                  : false,
-                              onChanged: (val) {
-                                controller.changeLanguage(i);
-                                print('val---====${val}');
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  SizedBox(height: 18,),
-                  GestureDetector(
-                    onTap: () async {
-                      SharedPreferences pref =
-                      await SharedPreferences.getInstance();
-                      controller.selectedIndex == 0
-                          ? Get.updateLocale(const Locale('en', 'US'))
-                          : Get.updateLocale(const Locale('ar', 'AE'));
-                      controller.selectedIndex == 0
-                          ? pref.setBool("isArabic", false)
-                          : pref.setBool("isArabic", true);
-                      pref.setBool("is_first", false);
-                      Timer(const Duration(seconds: 2), () {
-                        Get.offAll(const BottomNavigationScreen());
-                      });
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.only(
-                          top: 0, bottom: 0, left: 30, right: 30),
-                      height: 60,
-                      width: 300,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: Colors.blue, // Replace with your color
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Submit".tr,
+      ),
+      contentPadding: EdgeInsets.zero,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(50),
+      ),
+      content: GetBuilder<ProfileController>(
+        init: ProfileController(),
+        id: "list",
+        builder: (controller) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                for (int i = 0; i < controller.languageList.length; i++)
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    margin: const EdgeInsets.all(0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          controller.languageList[i].laung,
                           style: const TextStyle(
-                            fontSize: 15, // Replace with your font size
-                            color: Colors.white, // Replace with your color
+                            fontSize: 16, // Replace with your font size
                             fontWeight: FontWeight.bold,
+                            color: Colors.black, // Replace with your color
                           ),
+                        ),
+                        SizedBox(
+                          height: 30,
+                          child: Checkbox(
+                            activeColor: Colors.blue,
+                            // Replace with your color
+                            value: controller.selectedIndex == i ? true : false,
+                            onChanged: (val) {
+                              controller.changeLanguage(i);
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                SizedBox(
+                  height: 18,
+                ),
+                GestureDetector(
+                  onTap: () async {
+                    SharedPreferences pref =
+                        await SharedPreferences.getInstance();
+                    controller.selectedIndex == 0
+                        ? Get.updateLocale(const Locale('en', 'US'))
+                        : Get.updateLocale(const Locale('ar', 'AE'));
+                    controller.selectedIndex == 0
+                        ? pref.setBool("isArabic", false)
+                        : pref.setBool("isArabic", true);
+                    pref.setBool("is_first", false);
+                    Timer(const Duration(seconds: 2), () {
+                      Get.offAll(const BottomNavigationScreen());
+                    });
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.only(
+                        top: 0, bottom: 0, left: 30, right: 30),
+                    height: 60,
+                    width: 300,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Colors.blue, // Replace with your color
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Submit".tr,
+                        style: const TextStyle(
+                          fontSize: 15, // Replace with your font size
+                          color: Colors.white, // Replace with your color
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
                   ),
-                ],
-              ),
-            );
-          },
-        ),
-      )
-    );
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    ));
   }
 
   logoutDialog(

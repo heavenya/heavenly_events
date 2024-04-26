@@ -1,18 +1,44 @@
 import 'package:event/utils/common_imports.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class HomeController extends GetxController{
-
+class HomeController extends GetxController {
   List headerList = [
-    AppImages.header1,
-    AppImages.header2,
-    AppImages.header3,
-    AppImages.header4,
-    AppImages.header6,
-    AppImages.header1,
-    AppImages.header2,
-    AppImages.header3,
-    AppImages.header4,
+    {
+      "image": AppImages.header1,
+      "subImage": AppImages.list1Image,
+      "name": "Vance Corwin".tr,
+      "min": "20 min ago".tr,
+    },
+    {
+      "image": AppImages.header2,
+      "subImage": AppImages.list2Image,
+      "name": "Christina Perri".tr,
+      "min": "30 min ago".tr,
+    },
+    {
+      "image": AppImages.header3,
+      "subImage": AppImages.list3Image,
+      "name": "Ewa Farna".tr,
+      "min": "40 min ago".tr,
+    },
+    {
+      "image": AppImages.header4,
+      "subImage": AppImages.list2Image,
+      "name": "Vance Corwin".tr,
+      "min": "50 min ago".tr,
+    },
+    {
+      "image": AppImages.header6,
+      "subImage": AppImages.list1Image,
+      "name": "Ewa Farna".tr,
+      "min": "2 hour ago".tr,
+    },
+    {
+      "image": AppImages.header4,
+      "subImage": AppImages.list3Image,
+      "name": "Christina Perri".tr,
+      "min": "4 hour ago".tr,
+    },
   ];
 
   List subList = [
@@ -64,35 +90,32 @@ class HomeController extends GetxController{
       "min": "40 min ago".tr,
       "fav": false,
     },
-
   ];
 
   void favIcon(int index) {
-    if(subList[index]['id'] == index){
-      if(subList[index]['fav'] == false){
+    if (subList[index]['id'] == index) {
+      if (subList[index]['fav'] == false) {
         print("if");
         subList[index]['fav'] = true;
-      }
-      else{
+      } else {
         print("else");
         subList[index]['fav'] = false;
       }
       print("subList[index]['fav'] ${subList[index]['fav']}");
-    }
-    else{
+    } else {
       print("Else Else");
     }
     update(['list']);
-
   }
 
   var isArabic;
   lan() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    isArabic= prefs.getBool('isArabic') ?? false;
-    print('isarbic------${isArabic}');
+    isArabic = prefs.getBool('isArabic') ?? false;
+
     update(['detail']);
   }
+
   @override
   void onInit() {
     // TODO: implement onInit
@@ -100,12 +123,10 @@ class HomeController extends GetxController{
     lan();
   }
 
-
   // int selectedIndex = 0;
   //
   // void onItemTapped(int index) {
   //   selectedIndex = index;
   //   update();
   // }
-
 }

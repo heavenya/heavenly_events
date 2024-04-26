@@ -115,12 +115,10 @@ class FormController extends GetxController {
   }
   secondColor({ind}){
     secondIndex=ind;
-    print('secondIndex======${secondIndex}');
     update();
   }
   thirdColor({ind}){
     firstIndex=ind;
-    print('firstindex======${firstIndex}');
     update();
   }
 

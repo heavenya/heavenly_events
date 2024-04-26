@@ -243,7 +243,6 @@ class LiveScreen extends StatelessWidget  {
 
                                           controller.updateTabIndex(ind:controller.userList.length+1);
                                           controller.refresh();
-                                          print('length====${controller.userList.length + 1}');
 
                                         }
                                         controller.commentController.clear();

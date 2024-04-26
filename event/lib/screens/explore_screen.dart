@@ -80,8 +80,6 @@ class ExploreScreen extends StatelessWidget {
                   shrinkWrap: true,
                   itemCount: controller.exploreList.length,
                   itemBuilder: (context, index) {
-                    print(controller.exploreList[index]['image']);
-                    // double imageHeightWidth = 150;
                     return Padding(
                       padding: controller.isArabic==true?EdgeInsets.only(right: 9,):EdgeInsets.only(right: 8, left: index == 0 ? 12 : 0 ),
                       child: InkWell(

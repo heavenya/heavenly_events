@@ -26,7 +26,7 @@ class CalenderController extends GetxController {
   lan() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     isArabic= prefs.getBool('isArabic') ?? false;
-    print('isarbic------${isArabic}');
+
     update();
   }
 
@@ -117,7 +117,6 @@ class CalenderController extends GetxController {
 
   @override
   void onInit() async {
-    print("call onInit"); // this line not printing
     super.onInit();
     lan();
     currentDateTimeRemoveDay = DateTime(currentDateTimeMonth.year,currentDateTimeMonth.month,currentDateTimeMonth.day,00,00,00,00,00);

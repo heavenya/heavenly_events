@@ -1,10 +1,8 @@
 import 'package:event/utils/common_imports.dart';
-import 'package:flutter_credit_card/credit_card_model.dart';
+import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
-
-class AddCardController extends GetxController{
+class AddCardController extends GetxController {
   ///--- cmt code awesom card data ----
   // String cardNumber = '';
   // String cardHolderName = '';
@@ -29,14 +27,13 @@ class AddCardController extends GetxController{
   var isArabic;
   lan() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    isArabic= prefs.getBool('isArabic') ?? false;
-    print('isarbic------${isArabic}');
+    isArabic = prefs.getBool('isArabic') ?? false;
+
     update();
   }
 
   @override
   void onInit() {
-
     // focusNode = FocusNode();
     // focusNode.addListener(() {
     //
@@ -62,16 +59,12 @@ class AddCardController extends GetxController{
     super.dispose();
   }
 
-  void onCreditCardModelChange(CreditCardModel? creditCardModel) {
-
-      cardNumber = creditCardModel!.cardNumber;
-      expiryDate = creditCardModel.expiryDate;
-      cardHolderName = creditCardModel.cardHolderName;
-      cvvCode = creditCardModel.cvvCode;
-      isCvvFocused = creditCardModel.isCvvFocused;
+  void onCreditCardModelChange(CreditCardModel creditCardModel) {
+    cardNumber = creditCardModel.cardNumber;
+    expiryDate = creditCardModel.expiryDate;
+    cardHolderName = creditCardModel.cardHolderName;
+    cvvCode = creditCardModel.cvvCode;
+    isCvvFocused = creditCardModel.isCvvFocused;
     update();
   }
-
-
-
 }

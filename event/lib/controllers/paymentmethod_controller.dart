@@ -5,25 +5,23 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../utils/common_imports.dart';
 import '../utils/common_imports.dart';
 
-class PaymentController extends GetxController{
-
-  String number='';
-  String name='';
-  String date='';
+class PaymentController extends GetxController {
+  String number = '';
+  String name = '';
+  String date = '';
   List<UserCardModel> userCardList = [
     // UserCardModel(cmt: "a", ),
-
   ];
-
 
   bool selectedGoogle = false;
   bool selectedApple = false;
   bool selectedPaypal = false;
   var isArabic;
+
   lan() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    isArabic= prefs.getBool('isArabic') ?? false;
-    print('isarbic------${isArabic}');
+    isArabic = prefs.getBool('isArabic') ?? false;
+
     update();
   }
 
@@ -32,42 +30,36 @@ class PaymentController extends GetxController{
     // TODO: implement onInit
     super.onInit();
     lan();
-    selectedApple=true;
+    selectedApple = true;
     getData();
-
   }
 
-
-
-
-  google(){
-    selectedGoogle=!selectedGoogle;
+  google() {
+    selectedGoogle = !selectedGoogle;
     selectedApple = false;
     selectedPaypal = false;
     update(['paymentscreen']);
   }
 
-
-  apple(){
-    selectedApple=!selectedApple;
+  apple() {
+    selectedApple = !selectedApple;
     selectedGoogle = false;
     selectedPaypal = false;
     update(['paymentscreen']);
   }
 
-
-  paypal(){
-    selectedPaypal=!selectedPaypal;
+  paypal() {
+    selectedPaypal = !selectedPaypal;
     selectedGoogle = false;
     selectedApple = false;
     update(['paymentscreen']);
   }
 
   getData() async {
-    SharedPreferences sp=await SharedPreferences.getInstance();
-    number=  sp.getString('cNumber')!;
-    name=sp.getString('cName')!;
-    date=sp.getString('cDate')!;
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    number = sp.getString('cNumber')!;
+    name = sp.getString('cName')!;
+    date = sp.getString('cDate')!;
 
     print('name==${number}');
     print('name==${name}');
@@ -75,10 +67,9 @@ class PaymentController extends GetxController{
     update(['paymentscreen']);
   }
 
-  Future<void> addUserToList(cname,cnumber,cdate) async {
-
-
-    userCardList.add(UserCardModel(name: cname,cardNumber: cnumber,expiredDate:cdate ));
+  Future<void> addUserToList(cname, cnumber, cdate) async {
+    userCardList.add(
+        UserCardModel(name: cname, cardNumber: cnumber, expiredDate: cdate));
 
     update();
   }
@@ -91,48 +82,43 @@ class PaymentController extends GetxController{
     // }
   }
 
+// List<LinearGradient> colors = [
+//   LinearGradient(
+//     begin: Alignment.topLeft,
+//     end: Alignment.bottomRight,
+//     col: [
+//       Color(0xff3A5BF6),
+//       Color(0xff7A55D4),
+//     ],
+//     stops: const <double>[
+//       0.35,
+//       0.8,
+//     ],
+//   ),
+//   LinearGradient(
+//     begin: Alignment.topLeft,
+//     end: Alignment.bottomRight,
+//     col: [
+//       Color(0xff02C0A9),
+//       Color(0xff1189DC),
+//     ],
+//     stops: const <double>[
+//       0.35,
+//       0.8,
+//     ],
+//   ),
+//
+//
+// ];
 
-  // List<LinearGradient> colors = [
-  //   LinearGradient(
-  //     begin: Alignment.topLeft,
-  //     end: Alignment.bottomRight,
-  //     col: [
-  //       Color(0xff3A5BF6),
-  //       Color(0xff7A55D4),
-  //     ],
-  //     stops: const <double>[
-  //       0.35,
-  //       0.8,
-  //     ],
-  //   ),
-  //   LinearGradient(
-  //     begin: Alignment.topLeft,
-  //     end: Alignment.bottomRight,
-  //     col: [
-  //       Color(0xff02C0A9),
-  //       Color(0xff1189DC),
-  //     ],
-  //     stops: const <double>[
-  //       0.35,
-  //       0.8,
-  //     ],
-  //   ),
-  //
-  //
-  // ];
-
-
-  // List<Colors> colors = [
-  //   Colors(first:     Color(0xff3A5BF6),second: Color(0xff7A55D4), ),
-  //   Colors(first:Color(0xff02C0A9),second:Color(0xff1189DC), ),
-  //
-  //
-  //
-  // ];
-
-
+// List<Colors> colors = [
+//   Colors(first:     Color(0xff3A5BF6),second: Color(0xff7A55D4), ),
+//   Colors(first:Color(0xff02C0A9),second:Color(0xff1189DC), ),
+//
+//
+//
+// ];
 }
-
 
 // class LinearGradient {
 //

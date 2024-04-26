@@ -264,9 +264,7 @@ class EditProfileScreen extends StatelessWidget {
                                         locale: DateTimePickerLocale.en_us,
                                         looping: true,
                                       );
-                                      print('date-------${datePicked}');
                                       controller.selectedDate=datePicked!;
-                                      print('datattttt----${controller.selectedDate.toString().substring(0,11)}');
                                       controller.birthDateController.text=controller.selectedDate.toString().substring(0,11);
 
 

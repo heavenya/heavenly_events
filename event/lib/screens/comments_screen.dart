@@ -169,7 +169,6 @@ CommentsController commentsController=Get.put(CommentsController());
                         return InkWell(
                           onTap: (){
                             int ind = controller.commentList.indexWhere((element) => element.id == index);
-                            print("index on click = $ind");
                             if(ind == index && controller.commentList[index].totalComments > 0){
                               controller.isShowList(controller.commentList[index]);
                             }

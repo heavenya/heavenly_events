@@ -147,7 +147,7 @@ class MessageDetailController extends GetxController {
   lan() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     isArabic= prefs.getBool('isArabic') ?? false;
-    print('isarbic------${isArabic}');
+
     update();
   }
   @override

@@ -171,9 +171,7 @@ class _Episode5State extends State<Episode5> {
                                       onPressed: () {
                                         form.currentState!.save();
                                         controller.updateLanguageInformation();
-                                        Get.to(ViewScreen());// all this function does is print the list
-                                        // Navigator.pop(
-                                        //     context); // don't need to pass anything here
+                                        Get.to(ViewScreen());
                                       },
                                     ),
                                   ],
