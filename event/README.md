@@ -18,3 +18,10 @@
 7. cd ios
 8. pod install
 9. pod repo update 
+
+## google cloud intstall
+0. Install https://cloud.google.com/sdk/docs/install#mac
+1. Unzip file
+2. Move to users/you/ then drop the downloads their
+3. ./google-cloud-sdk/install.sh
+4. ./google-cloud-sdk/bin/gcloud init
